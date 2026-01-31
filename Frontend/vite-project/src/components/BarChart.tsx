@@ -1,65 +1,62 @@
+import { useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import { FiMoreVertical } from "react-icons/fi";
 import Sidebar from "../components/Sidebar";
-import Header from "../components/Header";
+// import Header from "../components/Header";
 
 export default function UsersPage() {
-  const users = [
-    {
-      name: "John Doe",
-      email: "john@example.com",
-      subscription: "Professional",
-      credits: "385",
-      spent: "$500",
-      status: "Active",
-      lastActive: "2 hours ago",
-    },
-    {
-      name: "John Doe",
-      email: "john@example.com",
-      subscription: "Enterprise",
-      credits: "385",
-      spent: "$500",
-      status: "Active",
-      lastActive: "5 minutes ago",
-    },
-    {
-      name: "John Doe",
-      email: "john@example.com",
-      subscription: "Starter",
-      credits: "385",
-      spent: "$500",
-      status: "Active",
-      lastActive: "1 day ago",
-    },
-    {
-      name: "John Doe",
-      email: "john@example.com",
-      subscription: "Professional",
-      credits: "385",
-      spent: "$500",
-      status: "Suspended",
-      lastActive: "2 weeks ago",
-    },
-  ];
+
+  const users = Array.from({ length: 36 }, (_, i) => ({
+    name: `User ${i + 1}`,
+    email: `user${i + 1}@example.com`,
+    subscription: ["Starter", "Professional", "Enterprise"][i % 3],
+    credits: "385",
+    spent: "$500",
+    status: ["Active", "Inactive", "Suspended"][i % 3],
+    lastActive: "2 hours ago",
+  }));
+  
+  
+
+  const [statusFilter, setStatusFilter] = useState("All status");
+  const [planFilter, setPlanFilter] = useState("All Plans");
+  const [currentPage, setCurrentPage] = useState(1);
+  const [pageGroup, setPageGroup] = useState(0);
+  
+  const usersPerPage = 6;
+  const pagesPerGroup = 3;
+  
+  
+
+  const filteredUsers = users.filter((user) => {
+    return (
+      (statusFilter === "All status" || user.status === statusFilter) &&
+      (planFilter === "All Plans" || user.subscription === planFilter)
+    );
+  });
+
+  const totalPages = Math.ceil(filteredUsers.length / usersPerPage);
+
+  const indexOfLastUser = currentPage * usersPerPage;
+  const indexOfFirstUser = indexOfLastUser - usersPerPage;
+  const currentUsers = filteredUsers.slice(
+    indexOfFirstUser,
+    indexOfLastUser
+  );
 
   return (
-    <div className="flex bg-black min-h-screen text-white w-[100%]">
+    <div className="flex bg-black min-h-screen text-white overflow-x-hidden">
 
-      {/* Sidebar */}
       <Sidebar />
 
-      {/* Main Content */}
-      <div className="flex-1 ml-64">
+      <div className="flex-1 lg:ml-64">
 
-        {/* Header */}
-        <Header />
+        {/* <Header /> */}
 
-        {/* Page Content */}
-        <div className="p-6 space-y-6">
+        <div className="p-6 space-y-6 max-w-[1400px] mx-auto w-full">
 
           {/* Top Stats */}
-          <div className="grid grid-cols-4 gap-6 mt-[7%]">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-[7%]">
             {["Total Users", "Active Users", "New Users", "Suspended"].map(
               (item, i) => (
                 <div
@@ -81,82 +78,49 @@ export default function UsersPage() {
           {/* Search + Filters */}
           <div className="flex items-center justify-between bg-[#131313] border border-[#1F1F1F] rounded-xl p-4">
 
-            {/* Search Input */}
-            <div
-              className="
-    flex items-center
-    w-[694px]
-    h-[42px]
-    bg-[#131313]
-    rounded-[10px]
-    border border-[#1F1F1F]
-    relative
-  "
-            >
+            <div className="flex items-center w-full max-w-[694px] h-[42px] bg-[#131313] rounded-[10px] border border-[#1F1F1F] relative">
               <FaSearch className="absolute left-4 text-gray-400 text-sm" />
-
               <input
                 type="text"
                 placeholder="Search by name, email, or user ID..."
-                className="
-      w-full
-      h-full
-      bg-transparent
-      outline-none
-      text-sm
-      text-gray-300
-      pl-10
-      pr-4
-    "
+                className="w-full h-full bg-transparent outline-none text-sm text-gray-300 pl-10 pr-4"
               />
             </div>
 
-            {/* Right Side Filters */}
             <div className="flex items-center gap-3">
 
-              {/* All Status */}
+              {/* Status Filter */}
               <select
-                className="
-      w-[136px]
-      h-[42px]
-      bg-[#131313]
-      rounded-[8px]
-      border border-[#1F1F1F]
-      px-4
-      text-sm
-      text-gray-300
-      outline-none
-    "
+                value={statusFilter}
+                onChange={(e) => {
+                  setStatusFilter(e.target.value);
+                  setCurrentPage(1);
+                }}
+                className="w-[136px] h-[42px] bg-[#131313] rounded-[8px] border border-[#1F1F1F] px-4 text-sm text-gray-300 outline-none"
               >
                 <option>All status</option>
+                <option>Active</option>
+                <option>Inactive</option>
+                <option>Suspended</option>
               </select>
 
-              {/* All Plans */}
+              {/* Plan Filter */}
               <select
-                className="
-      w-[136px]
-      h-[42px]
-      bg-[#131313]
-      rounded-[8px]
-      border border-[#1F1F1F]
-      px-4
-      text-sm
-      text-gray-300
-      outline-none
-    "
+                value={planFilter}
+                onChange={(e) => {
+                  setPlanFilter(e.target.value);
+                  setCurrentPage(1);
+                }}
+                className="w-[136px] h-[42px] bg-[#131313] rounded-[8px] border border-[#1F1F1F] px-4 text-sm text-gray-300 outline-none"
               >
                 <option>All Plans</option>
+                <option>Starter</option>
+                <option>Professional</option>
+                <option>Enterprise</option>
               </select>
 
-              {/* Export Button */}
               <button
-                className="
-      h-[42px]
-      px-5
-      rounded-[8px]
-      text-sm
-      font-medium
-    "
+                className="h-[42px] px-5 rounded-[8px] text-sm font-medium"
                 style={{
                   background:
                     "linear-gradient(90deg, #F88B65 0%, #E85E8F 36%, #D947AA 57%, #A04BCA 77%, #6C52E9 100%)",
@@ -168,9 +132,8 @@ export default function UsersPage() {
             </div>
           </div>
 
-
           {/* Table */}
-          <div className="bg-[#131313] border border-[#1F1F1F] rounded-xl overflow-hidden">
+          <div className="bg-[#131313] border border-[#1F1F1F] rounded-xl overflow-x-auto">
             <table className="w-full text-sm">
               <thead className="bg-[#1a1a25] text-gray-400">
                 <tr>
@@ -185,7 +148,7 @@ export default function UsersPage() {
               </thead>
 
               <tbody>
-                {users.map((user, index) => (
+                {currentUsers.map((user, index) => (
                   <tr
                     key={index}
                     className="border-b border-[#1F1F1F] hover:bg-[#1a1a25]"
@@ -213,10 +176,13 @@ export default function UsersPage() {
 
                     <td className="p-4">
                       <span
-                        className={`text-xs px-3 py-1 rounded-full ${user.status === "Active"
+                        className={`text-xs px-3 py-1 rounded-full ${
+                          user.status === "Active"
                             ? "bg-emerald-500/10 text-emerald-400"
+                            : user.status === "Inactive"
+                            ? "bg-yellow-500/10 text-yellow-400"
                             : "bg-red-500/10 text-red-400"
-                          }`}
+                        }`}
                       >
                         {user.status}
                       </span>
@@ -235,15 +201,69 @@ export default function UsersPage() {
             </table>
 
             {/* Pagination */}
-            <div className="flex items-center justify-between p-4 text-sm text-gray-400">
-              <p>Showing 6 of 8 users</p>
-              <div className="flex items-center gap-2">
-                <button className="px-3 py-1 bg-[#1a1a25] rounded">Previous</button>
-                <button className="px-3 py-1 bg-purple-600 rounded">1</button>
-                <button className="px-3 py-1 bg-[#1a1a25] rounded">2</button>
-                <button className="px-3 py-1 bg-[#1a1a25] rounded">Next</button>
-              </div>
-            </div>
+          {/* Pagination */}
+{/* Pagination */}
+<div className="flex items-center justify-end p-6">
+  <div className="flex items-center gap-3 bg-[#0f0f0f] p-2 rounded-xl">
+
+    {/* Previous Group */}
+    <button
+  onClick={() => {
+    if (pageGroup > 0) {
+      const newGroup = pageGroup - 1;
+      setPageGroup(newGroup);
+      setCurrentPage(newGroup * pagesPerGroup + 1);
+    }
+  }}
+  disabled={pageGroup === 0}
+  className="px-4 py-2 rounded-lg border border-[#1F1F1F] bg-[#131313] hover:bg-[#1a1a25] disabled:opacity-40"
+>
+  Previous
+</button>
+
+
+    {/* Page Numbers */}
+    {Array.from({ length: pagesPerGroup }).map((_, i) => {
+      const pageNumber = pageGroup * pagesPerGroup + i + 1;
+      if (pageNumber > totalPages) return null;
+
+      return (
+        <button
+          key={pageNumber}
+          onClick={() => setCurrentPage(pageNumber)}
+          className={`px-4 py-2 rounded-lg border border-[#1F1F1F] ${
+            currentPage === pageNumber
+              ? "bg-gradient-to-r from-pink-500 to-purple-600 text-white"
+              : "bg-[#131313] hover:bg-[#1a1a25]"
+          }`}
+        >
+          {pageNumber}
+        </button>
+      );
+    })}
+
+    {/* Next Group */}
+    <button
+  onClick={() => {
+    const maxGroup = Math.floor((totalPages - 1) / pagesPerGroup);
+
+    if (pageGroup < maxGroup) {
+      const newGroup = pageGroup + 1;
+      setPageGroup(newGroup);
+      setCurrentPage(newGroup * pagesPerGroup + 1);
+    }
+  }}
+  disabled={pageGroup >= Math.floor((totalPages - 1) / pagesPerGroup)}
+  className="px-4 py-2 rounded-lg border border-[#1F1F1F] bg-[#131313] hover:bg-[#1a1a25] disabled:opacity-40"
+>
+  Next
+</button>
+
+
+  </div>
+</div>
+
+
 
           </div>
 

@@ -1,15 +1,7 @@
 import Sidebar from "../components/Sidebar";
-import Header from "../components/Header";
+// import Header from "../components/Header";
 import StatsCard from "../components/StatsCard";
 
-// import {
-//   Users,
-//   Activity,
-//   CheckCircle,
-//   XCircle,
-//   Timer,
-//   ,
-// } from "lucide-react";
 
 import { LuUsers } from "react-icons/lu";
 import { FiActivity } from "react-icons/fi";
@@ -40,7 +32,7 @@ export default function Dashboard() {
 
       <div className="flex-1 p-6 space-y-6 overflow-y-auto">
         {/* Header */}
-        <Header />
+        {/* <Header /> */}
 
         {/* Top Big Stats */}
         <div className="w-full pt-[4px] pb-[4px] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-[20px]">
