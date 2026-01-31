@@ -1,8 +1,7 @@
 import { useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import { FiMoreVertical } from "react-icons/fi";
-import Sidebar from "../components/Sidebar";
-// import Header from "../components/Header";
+
 
 export default function UsersPage() {
 
@@ -45,15 +44,9 @@ export default function UsersPage() {
   );
 
   return (
-    <div className="flex bg-black min-h-screen text-white overflow-x-hidden">
+    <div className="bg-black min-h-screen text-white overflow-x-hidden ">
 
-      <Sidebar />
-
-      <div className="flex-1 lg:ml-64">
-
-        {/* <Header /> */}
-
-        <div className="p-6 space-y-6 max-w-[1400px] mx-auto w-full">
+    <div className="w-full max-w-[1700px] mx-auto px-2 py-2 space-y-6">
 
           {/* Top Stats */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-[7%]">
@@ -269,6 +262,6 @@ export default function UsersPage() {
 
         </div>
       </div>
-    </div>
+    
   );
 }

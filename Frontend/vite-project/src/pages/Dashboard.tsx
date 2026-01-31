@@ -1,4 +1,4 @@
-import Sidebar from "../components/Sidebar";
+// import Sidebar from "../components/Sidebar";
 // import Header from "../components/Header";
 import StatsCard from "../components/StatsCard";
 
@@ -27,15 +27,12 @@ import analyticsIcon from "../img/Vector.svg";
 
 export default function Dashboard() {
   return (
-    <div className="flex bg-[black] min-h-screen text-white space-y-6 overflow-y-auto ml-64 mt-[5%]">
-      <Sidebar />
+    <div className="bg-black min-h-screen text-white overflow-y-auto w-full mt-[5%]">
 
-      <div className="flex-1 p-6 space-y-6 overflow-y-auto">
-        {/* Header */}
-        {/* <Header /> */}
+      <div className="max-w-[1800px] mx-auto px-2 py-8">
 
         {/* Top Big Stats */}
-        <div className="w-full pt-[4px] pb-[4px] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-[20px]">
+        <div className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
 
           <StatsCard
             title="Total Users"
@@ -73,13 +70,10 @@ export default function Dashboard() {
             iconColor="text-[#A855F7]"
           />
 
-
         </div>
 
-
-
-        {/* Mini Stats Section (Image jaisa) */}
-        <div className="grid grid-cols-3 gap-4">
+        {/* Mini Stats Section */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
 
           <MiniStatCard
             title="New Users (7 days)"
@@ -125,20 +119,21 @@ export default function Dashboard() {
 
         </div>
 
-
         {/* Charts Section */}
-        <div className="grid grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6">
           <UserGrowthChart />
           <RevenueTrendChart />
         </div>
 
         {/* Recent Transactions */}
-        <RecentTransactions />
+        <div className="mt-6">
+          <RecentTransactions />
+        </div>
 
-
-        {/* PopularTemplates */}
-        <PopularTemplates />
-
+        {/* Popular Templates */}
+        <div className="mt-6">
+          <PopularTemplates />
+        </div>
 
       </div>
     </div>
