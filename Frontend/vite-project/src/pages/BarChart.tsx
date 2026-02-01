@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import { FiMoreVertical } from "react-icons/fi";
+import { FiDownload } from "react-icons/fi";
+
 
 
 export default function UsersPage() {
@@ -46,7 +48,7 @@ export default function UsersPage() {
   return (
     <div className="bg-black min-h-screen text-white overflow-x-hidden ">
 
-    <div className="w-full max-w-[1700px] mx-auto px-2 py-2 space-y-6">
+    <div className="w-full max-w-[1800px] mx-auto px-2 py-2 space-y-6">
 
           {/* Top Stats */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-[7%]">
@@ -113,14 +115,16 @@ export default function UsersPage() {
               </select>
 
               <button
-                className="h-[42px] px-5 rounded-[8px] text-sm font-medium"
-                style={{
-                  background:
-                    "linear-gradient(90deg, #F88B65 0%, #E85E8F 36%, #D947AA 57%, #A04BCA 77%, #6C52E9 100%)",
-                }}
-              >
-                Export
-              </button>
+  className="h-[42px] px-5 rounded-[8px] text-sm font-medium flex items-center gap-2 text-white"
+  style={{
+    background:
+      "linear-gradient(90deg, #F88B65 0%, #E85E8F 36%, #D947AA 57%, #A04BCA 77%, #6C52E9 100%)",
+  }}
+>
+  <FiDownload size={16} />
+  Export
+</button>
+
 
             </div>
           </div>
@@ -128,7 +132,7 @@ export default function UsersPage() {
           {/* Table */}
           <div className="bg-[#131313] border border-[#1F1F1F] rounded-xl overflow-x-auto">
             <table className="w-full text-sm">
-              <thead className="bg-[#1a1a25] text-gray-400">
+              <thead className="bg-[#131310] text-white">
                 <tr>
                   <th className="text-left p-4">User</th>
                   <th className="text-left p-4">Subscription</th>
@@ -251,17 +255,11 @@ export default function UsersPage() {
 >
   Next
 </button>
-
-
   </div>
 </div>
-
-
-
-          </div>
-
-        </div>
-      </div>
+  </div>
+  </div>
+</div>
     
   );
 }

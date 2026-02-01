@@ -1,5 +1,3 @@
-// import Sidebar from "../components/Sidebar";
-// import Header from "../components/Header";
 import StatsCard from "../components/StatsCard";
 
 

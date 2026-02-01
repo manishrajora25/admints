@@ -11,14 +11,14 @@ import Users from "./pages/BarChart";
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <First />,   // Layout with Header
+    element: <First />,  // Layout with Header
     children: [
       {
         index: true,
         element: <Dashboard />,
       },
       {
-        path: "users",
+        path: "/users",
         element: <Users />,
       },
     ],

@@ -11,7 +11,7 @@ const useIdleLogout = (timeout: number = 30 * 60 * 1000) => {
       console.log("User logged out due to inactivity");
 
       try {
-        await fetch("http://localhost:5000/user/logout", {
+        await fetch("http://localhost:3000/user/logout", {
           method: "POST",
           credentials: "include", // 🔥 important for cookies
         });
