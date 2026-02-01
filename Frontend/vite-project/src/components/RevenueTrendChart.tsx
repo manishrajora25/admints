@@ -23,7 +23,8 @@ import {
       <div className="bg-gradient-to-b from-[#131313] to-[#0f0f14] p-5 rounded-xl">
         <h2 className="text-sm font-semibold mb-4">Revenue Trend</h2>
         <div className="w-full h-60">
-        <ResponsiveContainer>
+       <ResponsiveContainer width="99%" height={300}>
+
   <BarChart data={data}>
     <CartesianGrid stroke="#222" strokeDasharray="3 3" />
     <XAxis dataKey="month" stroke="#888" />

@@ -6,7 +6,7 @@ import {
 
 import First from "./First";
 import Dashboard from "./pages/Dashboard";
-import Users from "./components/BarChart";
+import Users from "./pages/BarChart";
 
 const router = createBrowserRouter([
   {
