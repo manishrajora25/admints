@@ -6,7 +6,8 @@ import {
 
 import First from "./First";
 import Dashboard from "./pages/Dashboard";
-import Users from "./pages/BarChart";
+import Users from "./pages/UserChart";
+import UserPlansPage from "./pages/UserPlansPage";
 
 const router = createBrowserRouter([
   {
@@ -21,6 +22,13 @@ const router = createBrowserRouter([
         path: "/users",
         element: <Users />,
       },
+      {
+        path: "/pricing",
+        element: <UserPlansPage />,
+      }
+      
+      
+      
     ],
   },
 ]);
