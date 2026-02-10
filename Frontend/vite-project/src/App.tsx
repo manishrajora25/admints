@@ -8,6 +8,11 @@ import First from "./First";
 import Dashboard from "./pages/Dashboard";
 import Users from "./pages/UserChart";
 import UserPlansPage from "./pages/UserPlansPage";
+import Notifications from "./pages/Notifications";
+import Analytics from "./pages/Analytics";
+import Setting from "./pages/SystemSettings"
+
+
 
 const router = createBrowserRouter([
   {
@@ -25,7 +30,20 @@ const router = createBrowserRouter([
       {
         path: "/pricing",
         element: <UserPlansPage />,
+      },
+      {
+        path: "/notification",
+        element: <Notifications />,
+      },
+      {
+        path: "/settings",
+        element: <Setting />,
+      },
+      {
+        path: "/analytics",
+        element: <Analytics />,
       }
+      
       
       
       

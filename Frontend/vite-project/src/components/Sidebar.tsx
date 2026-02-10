@@ -18,7 +18,7 @@ export default function Sidebar() {
     { name: "Credits & Plans", icon: creditIcon, path: "/credits" },
     { name: "Payments", icon: paymentIcon, path: "/payments" },
     { name: "Analytics", icon: analyticsIcon, path: "/analytics" },
-    { name: "Notifications", icon: notificationIcon, path: "/notifications" },
+    { name: "Notifications", icon: notificationIcon, path: "/notification" },
     { name: "Settings", icon: settingsIcon, path: "/settings" },
   ];
 
