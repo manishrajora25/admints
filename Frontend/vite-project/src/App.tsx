@@ -11,6 +11,7 @@ import UserPlansPage from "./pages/UserPlansPage";
 import Notifications from "./pages/Notifications";
 import Analytics from "./pages/Analytics";
 import Setting from "./pages/SystemSettings"
+import Creditsplans from  "./pages/Creditsplans"
 
 
 
@@ -42,6 +43,10 @@ const router = createBrowserRouter([
       {
         path: "/analytics",
         element: <Analytics />,
+      },
+      {
+        path: "/creditsplans",
+        element: <Creditsplans />,
       }
       
       

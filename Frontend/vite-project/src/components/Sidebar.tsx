@@ -15,7 +15,7 @@ export default function Sidebar() {
     { name: "Dashboard", icon: dashboardIcon, path: "/" },
     { name: "User", icon: userIcon, path: "/users" },
     { name: "Templates", icon: templateIcon, path: "/templates" },
-    { name: "Credits & Plans", icon: creditIcon, path: "/credits" },
+    { name: "Credits & Plans", icon: creditIcon, path: "/creditsplans" },
     { name: "Payments", icon: paymentIcon, path: "/payments" },
     { name: "Analytics", icon: analyticsIcon, path: "/analytics" },
     { name: "Notifications", icon: notificationIcon, path: "/notification" },
