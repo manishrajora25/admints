@@ -602,6 +602,7 @@ import { DayPicker } from "react-day-picker";
 import "react-day-picker/dist/style.css";
 import instance from "../axiosConfig";
 
+
 interface StatCard {
   title: string;
   value: string;
@@ -670,12 +671,28 @@ const Creditsplans: React.FC = () => {
 
   const handleCreatePlan = async () => {
     try {
-      await instance.post("/admin/create-plan", formData);
+      const res = await instance.post("/admin/create-plan", formData);
+  
+      // ✅ Full backend response
+      console.log("Full Response:", res);
+  
+      // ✅ Sirf backend ka actual data
+      console.log("Response Data:", res.data);
+  
+      // ✅ Agar backend plan return kar raha hai
+      console.log("Created Plan:", res.data?.plan);
+  
+      // 🔥 Agar tum chaho to bina refresh ke direct add bhi kar sakte ho
+      if (res.data?.plan) {
+        setPlans((prev) => [res.data.plan, ...prev]);
+      }
   
       setShowModal(false);
-      fetchDashboard(); // list refresh
   
-      // optional reset
+      // Agar tum refresh se hi karna chahte ho to ye rehne do
+      fetchDashboard();
+  
+      // reset form
       setFormData({
         name: "",
         description: "",
@@ -687,8 +704,8 @@ const Creditsplans: React.FC = () => {
         status: "Active",
       });
   
-    } catch (error) {
-      console.error("Create Plan Error:", error);
+    } catch (error: any) {
+      console.error("Create Plan Error:", error.response?.data || error);
     }
   };
   
